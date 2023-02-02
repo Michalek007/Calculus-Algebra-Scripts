@@ -4,6 +4,9 @@ import matplotlib.pyplot as plt
 
 
 def display_graph(x, y, title: str, x_lim: list = None, y_lim: list = None, r_signal=None):
+    # choose mode: 0 - show graphs, 1 - save as files
+    mode = 0
+    dpi = 300
     if x_lim:
         plt.xlim(x_lim)
     if y_lim:
@@ -16,7 +19,11 @@ def display_graph(x, y, title: str, x_lim: list = None, y_lim: list = None, r_si
     if r_signal is not None:
         plt.plot(x, signal_in, label='Input')
         plt.legend(loc="upper left")
-    plt.show()
+    if mode:
+        plt.savefig(title + '.png', dpi=dpi)
+        plt.clf()
+    else:
+        plt.show()
 
 
 def convolve(x1, x2, n):
