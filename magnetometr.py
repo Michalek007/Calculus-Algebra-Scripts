@@ -78,7 +78,6 @@ crosstalk_z = [H_row_z_lin[i] / H_row_x_lin[i] for i in range(len(H_row_y_lin))]
 display_graph(H_row_y_lin, crosstalk_y, "Crosstalk - Y")
 display_graph(H_row_z_lin, crosstalk_z, "Crosstalk - Z")
 
-
 # display_graph(H_set_lin, H_row_x_lin, "H_measured vs H_set - X axis", r_signal=H_rowInv_lin)
 # display_graph(H_set_lin, H_row_y_lin, "H_measured vs H_set - Y axis", r_signal=H_rowInv_y_lin)
 # display_graph(H_set_lin, H_row_z_lin, "H_measured vs H_set - Z axis", r_signal=H_rowInv_z_lin)
