@@ -100,3 +100,5 @@ display_graph(VinR, VoutR, "Charakterystyka przejściowa - wzmocnienie różnico
 print("fg6: ", f6[13])
 print("fg5: ", f5[5])
 print("fg4: ", f4[5])
+
+print(VinR[-1]-VoutR[0])
