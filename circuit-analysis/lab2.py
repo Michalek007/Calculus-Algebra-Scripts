@@ -6,7 +6,7 @@ from scipy.optimize import curve_fit
 
 
 def display_graph(x, y, title: str, x_lim: list = None, y_lim: list = None, x_label: str = "Vin[V]",
-                  y_label: str = "Vout[V]", continuous=True, r_signal=None, log_scale=False):
+                  y_label: str = "Vout[V]", continuous=True, r_signal=None, log_scale=False, axvline=None):
     mode = 1
     dpi = 300
     if x_lim:
@@ -21,11 +21,12 @@ def display_graph(x, y, title: str, x_lim: list = None, y_lim: list = None, x_la
         plt.yscale("log")
         plt.xscale("log")
     if continuous:
-        plt.plot(x, y, '.-', label='Punkty pomiarowe')
+        plt.plot(x, y, label='Punkty pomiarowe')
     else:
         plt.plot(x, y, '.', label='Punkty pomiarowe')
+    if axvline:
+        plt.axvline(axvline)
     if r_signal is not None:
-        r_signal.reverse()
         plt.plot(x, r_signal, label="Dopasowana funkcja")
         plt.legend(loc="upper left")
     if mode:
@@ -50,31 +51,33 @@ k2 = df2["Vout"]/0.3
 f3 = df3["f"]
 k3 = df3["Vout"]/0.1
 
+print("Wzmocnienie układu 2: ", k2[0])
+print("Wzmocnienie układu 3: ", k3[1])
 
 
-# def func(x, a):
-#     return a*x
-#
-#
-display_graph(Vin1, Vout1, "Charakterystyka przejściowa wzmacniacza odwracającego")
-# fit_params, cm = curve_fit(func, Vin2, Vout2)
-# print(fit_params)
-#
-# display_graph(Vin3, Vout3, "Charakterystyka przejściowa wzmacniacza odwracającego z buforem")
-# fit_params, cm = curve_fit(func, Vin3, Vout3)
-# print(fit_params)
-#
-display_graph(f2, k2, "Charakterystyka częstotliwościowa wzmacniacza odwracającego", y_label="k[V/V]", x_label="f[kHz]", log_scale=True)
-display_graph(f3, k3, "Charakterystyka częstotliwościowa", y_label="k[V/V]", x_label="f[kHz]", log_scale=True)
-# display_graph(VinS, VoutS, "Charakterystyka przejściowa - wzmocnienie sumacyjne", y_lim=[0, 0.1])
-# display_graph(VinR, VoutR, "Charakterystyka przejściowa - wzmocnienie różnicowe")
-#
-# # print(20*np.log10(k6))
-# # print(20*np.log10(k5))
-# # print(20*np.log10(k4))
-#
+def func(x, a, b):
+    return a*x + b
+
+fit_params, cm = curve_fit(func, Vin1[4:16], Vout1[4:16])
+
+display_graph(Vin1[4:16], Vout1[4:16], "Charakterystyka przejściowa (2)")
+display_graph(Vin1, Vout1, "Charakterystyka przejściowa (1)")
+
+# display_graph(Vin1[4:16], func(Vin1[4:16], fit_params[0], fit_params[1]), 'test', r_signal=Vout1[4:16])
+print(fit_params)
+print("Wzmocnienie układu 1: ", fit_params[0])
+
+display_graph(f2, k2, "Charakterystyka częstotliwościowa (1)", y_label="k[V/V]", x_label="f[kHz]", log_scale=True, axvline=f2[13])
+display_graph(f3, k3, "Charakterystyka częstotliwościowa (2)", y_label="k[V/V]", x_label="f[kHz]", log_scale=True, axvline=f3[14])
+
+# print(20*np.log10(k2))
+# print(20*np.log10(k3))
+
+print("Częstotliwość graniczna układu 2 [kHz]: ", f2[13])
+print("Częstotliwość graniczna układu 3 [kHz]: ", f3[14])
+
+print("Pole wzmocnienia układu 2 [kHz]: ", k2[0] * f2[13])
+print("Pole wzmocnienia układu 3 [kHz]: ", k3[1] * f3[14])
 # print("fg6: ", f6[13])
 # print("fg5: ", f5[5])
 # print("fg4: ", f4[5])
-#
-# print(VinR[-1]-VoutR[0])
