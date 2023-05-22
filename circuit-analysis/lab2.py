@@ -7,7 +7,7 @@ from scipy.optimize import curve_fit
 
 def display_graph(x, y, title: str, x_lim: list = None, y_lim: list = None, x_label: str = "Vin[V]",
                   y_label: str = "Vout[V]", continuous=True, r_signal=None, log_scale=False, axvline=None):
-    mode = 1
+    mode = 0
     dpi = 300
     if x_lim:
         plt.xlim(x_lim)

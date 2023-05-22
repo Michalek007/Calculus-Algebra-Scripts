@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
 import pandas as pd
 import scipy.fft
 from scipy.optimize import curve_fit
@@ -8,7 +9,7 @@ import math
 
 def create_graph(x, y, title: str, x_lim: list = None, y_lim: list = None, x_label: str = None,
                  y_label: str = None, label: list = None, continuous=True, values: list[list] = None):
-    mode = 1
+    mode = 0
     dpi = 150
     if x_lim:
         plt.xlim(x_lim)
@@ -38,6 +39,16 @@ def create_graph(x, y, title: str, x_lim: list = None, y_lim: list = None, x_lab
 
 def equal(a, b, e=0.01):
     return b + e >= a >= b - e
+
+
+def derivative(y, x):
+    diff_x = []
+    for i in range(len(x)):
+        try:
+            diff_x.append((y[i+1] - y[i]) / (x[i+1] - x[i]))
+        except IndexError:
+            break
+    return diff_x
 
 
 with open("../data/pomiar1.txt", 'r') as f:
@@ -212,6 +223,7 @@ temp = []
 for row in data:
     row_data = row.split("\t")
     i.append(int(row_data[0]) * 0.3)
+    # i.append(int(row_data[0])/10)
     pres.append(round(float(row_data[1]), 4))
     temp.append(round(float(row_data[2]), 2))
 
@@ -228,6 +240,22 @@ for p in pres:
     h.append(-np.log(p/p_ref)*R*temp_average/(u*g))
     # print(h[-1])
 
+h0 = np.sum(h[350:400])/50
+h1 = (np.sum(h[250:350]) + np.sum(h[450:500]))/150
+h2 = (np.sum(h[150:200]) + np.sum(h[550:600]))/100
+h3 = (np.sum(h[0:100]) + np.sum(h[630:700]))/170
+h4 = (np.sum(h[710:760]) + np.sum(h[950:1000]))/100
+h5 = np.sum(h[850:900])/50
+hx = (h5, h4, h3, h2, h1, h0)
+
+print(h0)
+print(h1)
+print(h2)
+print(h3)
+print(h4)
+print(h5)
+
+
 # plt.plot(pres, h)
 # plt.grid()
 # plt.show()
@@ -243,17 +271,38 @@ for p in pres:
 create_graph(i, pres, "Pressure vs time", x_label="Time [s]", y_label="Pressure [hPa]")
 create_graph(i, h, "Height (time) ", x_label="Time [s]", y_label="Height above sea [m]")
 
+# N = 300
+dpi = 150
 plt.plot(i, h)
-plt.axhline(201)
-plt.axhline(197)
-plt.axhline(194)
-plt.axhline(190)
-plt.axhline(187)
-plt.axhline(183)
-
-
+plt.axhline(h5, color=mcolors.CSS4_COLORS["darkred"], label='Piętro 5')
+plt.axhline(h4, color=mcolors.CSS4_COLORS["maroon"], label='Piętro 4')
+plt.axhline(h3, color=mcolors.CSS4_COLORS["firebrick"], label='Piętro 3')
+plt.axhline(h2, color=mcolors.CSS4_COLORS["brown"], label='Piętro 2')
+plt.axhline(h1, color=mcolors.CSS4_COLORS["indianred"], label='Piętro 1')
+plt.axhline(h0, color=mcolors.CSS4_COLORS["lightcoral"], label='Piętro 0')
+plt.legend(loc="lower right")
+# plt.xticks([5 * i for i in range(20)])
+plt.title("Height vs time")
+plt.xlabel("Time [s]")
+plt.ylabel("Height above sea [m]")
 plt.grid()
-plt.show()
+# plt.show()
+plt.savefig("Height vs time" + '.png', dpi=dpi)
+plt.clf()
+
+average_dif = 0
+for i in range(len(hx)-1):
+    average_dif += hx[i] - hx[i+1]
+average_dif = average_dif / (len(hx)-1)
+print(average_dif)
 
 # sum = np.sum(h[0:70])/70
 # print(sum)
+#
+# diff_h = derivative(h, i)
+#
+# for value in diff_h:
+#     print(value)
+# plt.plot(i[0:100], diff_h[0:100])
+# plt.grid()
+# plt.show()
