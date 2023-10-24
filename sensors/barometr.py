@@ -51,7 +51,7 @@ def derivative(y, x):
     return diff_x
 
 
-with open("../data/pomiar1.txt", 'r') as f:
+with open("data/pomiar1.txt", 'r') as f:
     data = f.read().split('\n')
 
 time = []
@@ -213,7 +213,7 @@ for i in range(len(harmonic_time)):
 #              continuous=True, label=["Dane pomiarowe", "Dopasowana funkcja"], values=[[fit_x, fit_values]])
 
 # barometr
-with open("../data/pomiar2.txt", 'r') as f:
+with open("data/pomiar2.txt", 'r') as f:
     data = f.read().split('\n')
 
 i = []

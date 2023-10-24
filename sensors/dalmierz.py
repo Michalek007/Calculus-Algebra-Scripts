@@ -30,7 +30,7 @@ def display_graph(x, y, title: str, x_lim: list = None, y_lim: list = None, x_la
         plt.show()
 
 
-df2 = pd.read_csv("../data/dalmierz2.csv")
+df2 = pd.read_csv("data/dalmierz2.csv")
 distance = df2["distance"]
 optical = df2["optical"]
 sound = df2["sound"]
@@ -39,7 +39,7 @@ velocity = df2["velocity"]
 
 display_graph(distance, impuls, "Ultrasound sensor")
 
-df2 = pd.read_csv("../data/dalmierz3.csv")
+df2 = pd.read_csv("data/dalmierz3.csv")
 distance_lin = df2["distance"]
 impuls_lin = df2["impuls"]
 display_graph(distance_lin, impuls_lin, "Ultrasound sensor - linear range")

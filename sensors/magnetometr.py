@@ -31,7 +31,7 @@ def display_graph(x, y, title: str, x_lim: list = None, y_lim: list = None, x_la
         plt.show()
 
 
-df2 = pd.read_csv("../data/Data.csv")
+df2 = pd.read_csv("data/Data.csv")
 H_row_x = df2["H_row_x"]/230
 H_row_y = df2["H_row_y"]/230
 H_row_z = df2["H_row_z"]/230
@@ -46,7 +46,7 @@ display_graph(H_set, H_row_x, "H_measured vs H_set - X axis", r_signal=H_rowInv)
 display_graph(H_set, H_row_y, "H_measured vs H_set - Y axis", r_signal=H_rowInv_y)
 display_graph(H_set, H_row_z, "H_measured vs H_set - Z axis", r_signal=H_rowInv_z)
 
-df2 = pd.read_csv("../data/Data2.csv")
+df2 = pd.read_csv("data/Data2.csv")
 H_row_x_lin = list(df2["H_row_x"]/230)
 H_row_y_lin = list(df2["H_row_y"]/230)
 H_row_z_lin = list(df2["H_row_z"]/230)
