@@ -5,10 +5,11 @@ import pandas as pd
 import scipy.fft
 from scipy.optimize import curve_fit
 import math
+from typing import List
 
 
 def create_graph(x, y, title: str, x_lim: list = None, y_lim: list = None, x_label: str = None,
-                 y_label: str = None, label: list = None, continuous=True, values: list[list] = None):
+                 y_label: str = None, label: list = None, continuous=True, values: List[list] = None):
     mode = 0
     dpi = 150
     if x_lim:
