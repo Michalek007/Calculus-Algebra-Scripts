@@ -1,5 +1,6 @@
 import random
 
+N = 20
 
 def bubble_sort(arr):
     n = len(arr)
@@ -14,8 +15,7 @@ def bubble_sort(arr):
             return
 
 
-# Driver code to test above
-arr = [64, 34, 25, 12, 22, 11, 90, 5, 2, 123]
+arr = [random.randint(0, 100) for _ in range(N)]
 
 bubble_sort(arr)
 
@@ -34,7 +34,7 @@ def selection_sort(arr):
         arr[i], arr[min] = arr[min], arr[i]
 
 
-arr = [64, 34, 25, 12, 22, 11, 90, 5, 2, 123]
+arr = [random.randint(0, 100) for _ in range(N)]
 
 selection_sort(arr)
 
