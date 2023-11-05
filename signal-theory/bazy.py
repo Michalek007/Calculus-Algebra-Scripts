@@ -1,7 +1,7 @@
 import scipy
 import numpy as np
 import matplotlib.pyplot as plt
-from basic_functions import *
+from math_functions import *
 
 
 def display_graph(x, y, title: str, x_lim: list = None, y_lim: list = None, r_signal=None):
