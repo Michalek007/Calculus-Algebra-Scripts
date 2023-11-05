@@ -19,4 +19,12 @@ Python 3.8+
 
 ## Dependencies
 
-Numpy, Scipy, Matplotlib, Timeit
+Numpy, Scipy, Matplotlib, Pandas
+
+## Installation
+
+First, clone this repository.
+
+    $ git clone https://github.com/Michalek007/Calculus-Algebra-Scripts.git
+
+Then, to create and setup virtual environment with all necessary packages run `venvSetup.bat`.    
