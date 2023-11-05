@@ -1,14 +1,17 @@
 # Calculus-Algebra-Scripts
 
-**Python scripts related with calculus, algebra, signal theory and cicruit theory**
+**Python scripts related with calculus, algebra, signal theory and circuits theory**
 
 This repo contains scripts with:
-* nodal analysis of sample ciruits
+* nodal analysis of sample circuits
 * RLC circuit calculations
 * LU method for solving matrix equations
 * QR method for solving matrix equations
 * comparison of QR and LU methods
-* Fast Fourier Transfrom calculations for sinus, rectangle and triangle signals passed through high & low pass filter RC
+* Fast Fourier Transform calculations for sinus, rectangle and triangle signals passed through high & low pass filter RC
+* sorting algorithms
+* tree structure implementation
+* parallel implementation of qs
 
 ## Requirements
 
