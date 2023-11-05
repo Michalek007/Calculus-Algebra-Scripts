@@ -1,6 +1,6 @@
 import unittest
 
-from algorithms.lab1.tree_structure import TreeNode, Tree
+from algorithms.modules import TreeNode, Tree
 
 
 class TestTreeNode(unittest.TestCase):

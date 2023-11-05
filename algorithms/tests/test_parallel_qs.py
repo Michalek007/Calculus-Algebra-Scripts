@@ -1,7 +1,7 @@
 import unittest
 from multiprocessing import Pipe, Process
 
-from algorithms.lab2.parallel_qs import quick_sort_parallel
+from algorithms.scripts.parallel_qs import quick_sort_parallel
 
 
 class TestQsParallel(unittest.TestCase):
