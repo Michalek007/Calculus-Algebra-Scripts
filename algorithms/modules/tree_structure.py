@@ -43,6 +43,20 @@ class Tree:
             tab_str += '\t'
         return tab_str
 
+    @property
+    def min_value(self):
+        return min(self.get_all_values())
+
+    def get_all_values(self, main_node=None, values=None):
+        if values is None:
+            values = []
+        if main_node is None:
+            main_node = self.main_node
+        values.append(main_node.data)
+        for child in main_node.child:
+            self.get_all_values(child, values)
+        return values
+
     def display(self, main_node=None, iteration: int = 0):
         """ Displays all nodes using recursive algorithm pre-order. """
         if main_node is None:
@@ -77,4 +91,7 @@ if __name__ == '__main__':
     tree = Tree(main_node=top_node)
 
     print(tree)
+
+    print(tree.min_value)
+    tree.min_value = 10
     # tree.display()

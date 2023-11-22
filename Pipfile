@@ -8,6 +8,7 @@ matplotlib = "*"
 numpy = "*"
 scipy = "*"
 pandas = "*"
+datasets = "*"
 
 [dev-packages]
 
